@@ -30,23 +30,6 @@ namespace RRpain.Classes.Common
                 .ContinueWith(t => taskError(t.Exception));
         }
 
-        public static void GetPlayerLookup(string playerName, Action<McBans> taskSuccess,
-            Action<AggregateException> taskError)
-        {
-            Task.Factory.StartNew(() => GetMcBansLookup(playerName))
-                .ContinueWith(t =>
-                {
-                    if (t.Result == null)
-                    {
-                        Utils.Log("Connection: Result is null");
-                    }
-                    else
-                    {
-                        taskSuccess(t.Result);
-                    }
-                })
-                .ContinueWith(t => taskError(t.Exception));
-        }
 
         public static void GetLinkTitle(string url, Action<string> taskSuccess, Action<AggregateException> taskError)
         {
@@ -133,59 +116,6 @@ namespace RRpain.Classes.Common
             }
         }
 
-        private static McBans GetMcBansLookup(string playerName)
-        {
-            McBans mcBans = null;
-            if (Program.McBansApiUrl != null)
-            {
-                var url = string.Format("http://{0}/v2/{1}", Program.McBansApiUrl, Data.McBansApiKey);
-                var postData = "exec=playerLookup&player=" + playerName;
-                var byteArray = Encoding.UTF8.GetBytes(postData);
-
-                var webRequest = (HttpWebRequest)WebRequest.Create(url);
-                webRequest.Method = "POST";
-                webRequest.Accept = "*/*";
-                webRequest.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
-                webRequest.ContentType = "application/x-www-form-urlencoded";
-                webRequest.ContentLength = byteArray.Length;
-                webRequest.UserAgent = "runscope/0.1";
-
-                var dataStream = webRequest.GetRequestStream();
-                dataStream.Write(byteArray, 0, byteArray.Length);
-                dataStream.Close();
-
-                using (var webResponse = webRequest.GetResponse() as HttpWebResponse)
-                {
-                    if (webResponse != null && webResponse.StatusCode == HttpStatusCode.OK)
-                    {
-                        using (var reader = new StreamReader(webResponse.GetResponseStream()))
-                        {
-                            try
-                            {
-                                var data = reader.ReadToEnd();
-                                mcBans = JsonConvert.DeserializeObject<McBans>(data);
-                            }
-                            catch (Exception)
-                            {
-                                Utils.Log("Connection: Unable to parse stream response: {0}", reader.ReadToEnd());
-                                return null;
-                            }
-                        }
-                    }
-                    else
-                    {
-                        if (webResponse != null)
-                            Utils.Log("Connection: Error fetching data. Server returned status code : {0}",
-                                webResponse.StatusCode);
-                    }
-
-                    return mcBans;
-                }
-            }
-
-            Utils.Log("Failed to lookup player, MC Bans API Url is null.");
-            return null;
-        }
 
         private static string GetWebTitle(string url)
         {
