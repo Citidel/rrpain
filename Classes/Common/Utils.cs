@@ -132,22 +132,6 @@ namespace RRpain.Classes.Common
             return inputFloat + "";
         }
 
-        /// <summary>
-        /// Returns the server version for the given short code and id
-        /// </summary>
-        /// <param name="shortCode"></param>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public static string GetVersion(string shortCode, string id)
-        {
-            foreach (var server in Program.ServerList.Where(server => server.ShortCode == shortCode && server.Id == id))
-            {
-                return server.Version;
-            }
-
-            return "Unknown";
-        }
-
         public static string GetColorCode(int bans)
         {
             if (bans == 0)
