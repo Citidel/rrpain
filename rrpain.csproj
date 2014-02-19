@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{87DBF470-6A81-46CA-B74F-89D2170E2621}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <NoStandardLibraries>false</NoStandardLibraries>
+    <AssemblyName>ConsoleApplication</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ChatSharp">
+      <HintPath>References\ChatSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>References\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Classes\Commands\Announcement.cs" />
+    <Compile Include="Classes\Commands\Dev.cs" />
+    <Compile Include="Classes\Commands\RRpain.cs" />
+    <Compile Include="Classes\Commands\Google.cs" />
+    <Compile Include="Classes\Commands\JokeVelo.cs" />
+    <Compile Include="Classes\Commands\NoSpam.cs" />
+    <Compile Include="Classes\Common\Colors.cs" />
+    <Compile Include="Classes\Common\Config.cs" />
+    <Compile Include="Classes\Common\Connection.cs" />
+    <Compile Include="Classes\Common\Data.cs" />
+    <Compile Include="Classes\Common\Utils.cs" />
+    <Compile Include="Classes\Core\CommandAttribute.cs" />
+    <Compile Include="Classes\Core\CommandHandler.cs" />
+    <Compile Include="Classes\Handler.cs" />
+    <Compile Include="Classes\Instances\Announcement.cs" />
+    <Compile Include="Classes\Instances\Blacklist.cs" />
+    <Compile Include="Classes\Instances\FishBans.cs" />
+    <Compile Include="Classes\Instances\McBans.cs" />
+    <Compile Include="Classes\Instances\MojangStatus.cs" />
+    <Compile Include="Classes\Instances\Server.cs" />
+    <Compile Include="Classes\Program.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSHARP.Targets" />
+  <ProjectExtensions>
+    <VisualStudio AllowExistingFolder="true" />
+  </ProjectExtensions>
+</Project>
