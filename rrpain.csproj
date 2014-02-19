@@ -65,11 +65,6 @@
     <Compile Include="Classes\Core\CommandHandler.cs" />
     <Compile Include="Classes\Handler.cs" />
     <Compile Include="Classes\Instances\Announcement.cs" />
-    <Compile Include="Classes\Instances\Blacklist.cs" />
-    <Compile Include="Classes\Instances\FishBans.cs" />
-    <Compile Include="Classes\Instances\McBans.cs" />
-    <Compile Include="Classes\Instances\MojangStatus.cs" />
-    <Compile Include="Classes\Instances\Server.cs" />
     <Compile Include="Classes\Program.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSHARP.Targets" />

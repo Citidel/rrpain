@@ -23,11 +23,9 @@ namespace RRpain.Classes
 
         public static bool DevMode;
         public static bool IsLocked;
-
-        public static readonly List<Server> ServerList = new List<Server>();
+      
         public static readonly Dictionary<string, CommandAttribute> Commands = new Dictionary<string, CommandAttribute>();
-        private static readonly List<Blacklist> BlackList = new List<Blacklist>();
-
+    
         static void Main(string[] argArray)
         {
             InitClasses();
@@ -117,9 +115,7 @@ namespace RRpain.Classes
 
             if (args.PrivateMessage.Message.StartsWith(_commandPrefix) || paramList[0].StartsWith(_commandPrefix))
             {
-                // Only listen to people who are not blacklisted
-                if (BlackList.All(item => item.Ip != args.PrivateMessage.User.Hostname) || Utils.IsAdmin(args.PrivateMessage.User.Nick) || Utils.IsOp(args.PrivateMessage.User.Nick))
-                {
+               
                     if (IsLocked & Utils.IsOp(args.PrivateMessage.User.Nick) != true & !paramList[0].Contains("player"))
                     {
                         Utils.SendNotice("RRpain is currently set to Ops Only.", args.PrivateMessage.User.Nick);
@@ -131,11 +127,7 @@ namespace RRpain.Classes
                             ((CommandHandler)Activator.CreateInstance(type)).HandleCommand(paramList, args.PrivateMessage.User, isIngameCommand);
                         }
                     }
-                }
-                else
-                {
-                    Utils.SendNotice("You have been blacklisted from this bot. Refer to a staff member if you feel this is in error.", args.PrivateMessage.User.Nick);
-                }
+               
             }
 
             //listen for www or http(s)
